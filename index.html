@@ -6,7 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	
 	<!-- Linking CSS -->
-	<link rel="stylesheet" href="./assets/css/reset.css">
+	<!-- <link rel="stylesheet" href="./assets/css/reset.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="./assets/css/style.css">
 
 	<title>Star Wars RPG</title>
@@ -14,17 +15,29 @@
 <body>
 	<h1>Star Wars RPG!</h1>
 	<p>Your Character</p>
-	<p id="toAttack">Enimies Availible to Attack</p>
+	<div class="image" id="characterChoose"></div>
+
+	<div id="chosen"></div>
+
+	<p id="toAttack">Enemies Available to Attack</p>
 	<p>Fight Section</p>
 
 	<button id="attack-btn">Attack</button>
 
+	<p>Defender</p>
+	<div id="enemies"></div>
 
+	<button id="restart">Restart</button>
 
+	<div id="message"></div>
 
+<!-- Linking Javascript -->
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 
+<script src="./assets/javascript/game.js"></script>
 
-
-	<script type="text/javascript"></script>
 </body>
 </html>
