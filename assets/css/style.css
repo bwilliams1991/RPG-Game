@@ -3,57 +3,27 @@ body {
 	background-image: url("../images/X-wing_SWB.png");
 }
 
+img {
+	opacity: 1.0;
+}
 .image { 
 	position: relative; 
 	width: 100%; 
+
 }
 
-h4 { 
+span {
+	line-height: 70%;
 	color: white;
 	text-shadow: 
 			-1px -1px 0 #000,
 			 1px -1px 0 #000,
 			-1px  1px 0 #000,
 			 1px  1px 0 #000;
-	position: absolute; 
-	top: 115px; 
-	left: 10px; 
-	width: 100%; 
+	margin-right: 5px;
 }
 
-.nameover-luke {
-	left: 260px;
-}
-
-.nameover-sid {
-	left: 510px;
-}
-
-.nameover-maul {
-	left: 760px;
-}
-
-h5 { 
-	color: white;
-	text-shadow: 
-			-1px -1px 0 #000,
-			 1px -1px 0 #000,
-			-1px  1px 0 #000,
-			 1px  1px 0 #000;
-	position: absolute; 
-	top: 20px; 
-	left: 215px; 
-	width: 100%; 
-}
-
-.healthover-luke {
-	left: 465px;
-}
-
-.healthover-sid {
-	left: 715px;
-}
-
-.healthover-maul {
-	left: 965px;
+.opacity {
+	background: white;
+	opacity: 0.1;
 }

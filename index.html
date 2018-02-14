@@ -1,43 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
+
 	<!-- Linking CSS -->
 	<!-- <link rel="stylesheet" href="./assets/css/reset.css"> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="./assets/css/style.css">
 
 	<title>Star Wars RPG</title>
 </head>
+
 <body>
-	<h1>Star Wars RPG!</h1>
-	<p>Your Character</p>
-	<div class="image" id="characterChoose"></div>
 
-	<div id="chosen"></div>
+	<header>
+		<h1>Star Wars RPG!</h1>
+	</header>
 
-	<p id="toAttack">Enemies Available to Attack</p>
-	<p>Fight Section</p>
+	<div class="container">
+		<div class="row opacity">
 
-	<button id="attack-btn">Attack</button>
+			<div class="col-md-3">
+				<span class="image" id="characterChoose"></span>
+			</div>
 
-	<p>Defender</p>
-	<div id="enemies"></div>
+			<div class="col-md-6">
+				<p>Fight Section</p>
+				<div class="row">
+					<div class="col-md-3">
+						<p>Your Character</p>
+						<div id="chosen"></div>
+					</div>
+					<div class="col-md-3">
+						<p>Defender</p>
+					</div>
+					<div id="message"></div>
+				</div>
 
-	<button id="restart">Restart</button>
+			</div>
 
-	<div id="message"></div>
+			<div class="col-md-3" id="toAttack">
+				<p>Enemies Available to Attack</p>
+				<div id="enemies"></div>
+			</div>
 
-<!-- Linking Javascript -->
-<script
-  src="http://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+		</div>
 
-<script src="./assets/javascript/game.js"></script>
+	</div>
+
+
+
+	<button class="btn btn-danger" id="attack-btn">Attack</button>
+
+	
+	
+
+	<button class="btn btn-default" id="restart">Restart</button>
+
+
+
+	<!-- Linking Javascript -->
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+	<script src="./assets/javascript/game.js"></script>
 
 </body>
+
 </html>
