@@ -181,6 +181,9 @@ $(document).ready(function () {
 	function moveEnemies() {
 		$(".available").removeClass("available").addClass("becomeEnemy");
 		$("#enemies").append($(".becomeEnemy"));
+
+			// remove html from characterChoose div
+			$("#characterChoose").html("");
 	}
 
 	// reset game
@@ -213,11 +216,6 @@ $(document).ready(function () {
 		var end = false;
 	}
 
-	// Move remaining to defenders Position
-	function moveEnemies() {
-		$(".available").removeClass("available").addClass("becomeEnemy");
-		$("#enemies").append($(".becomeEnemy"));
-	}
 	// Process
 	// --------------------------------------------------------------------------------------
 
@@ -237,13 +235,22 @@ $(document).ready(function () {
 
 			theCharacter(characters[0]);
 			characterSelected = true;
+			
+
+			// change id of name/health to obi-name/health for greater definition
+			$('.name').attr("id", "obi-name");
+			$('.health').attr("id", "obi-health");
 
 			$("#obi-wan").removeClass("available").addClass("chosen");
-			// $("#").removeClass("available").addClass("chosen");
+			
+
+			$("#chosen").append(characters[0].name);
+			$("#chosen").append(characters[0].healthPoints);
 			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
+
 			// if character is selected and enemy is not selected
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
@@ -272,11 +279,22 @@ $(document).ready(function () {
 			theCharacter(characters[1]);
 			characterSelected = true;
 
+
+	// change id of name/health to obi-name/health for greater definition
+	$('.name').attr("id", "luke-name");
+	$('.health').attr("id", "luke-health");
+
 			$("#luke").removeClass("available").addClass("chosen");
+
+			
+			$("#chosen").append(characters[1].name);
+			$("#chosen").append(characters[1].healthPoints);
 			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
+
+
 
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
@@ -304,8 +322,17 @@ $(document).ready(function () {
 			theCharacter(characters[2]);
 			characterSelected = true;
 
+
+	// change id of name/health to obi-name/health for greater definition
+	$('.name').attr("id", "sid-name");
+	$('.health').attr("id", "sid-health");
+
 			// Display the chosen character
 			$("#sid").removeClass("available").addClass("chosen");
+
+			
+			$("#chosen").append(characters[2].name);
+			$("#chosen").append(characters[2].healthPoints);
 			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
@@ -336,12 +363,23 @@ $(document).ready(function () {
 			theCharacter(characters[3]);
 			characterSelected = true;
 
+
+				// change id of name/health to obi-name/health for greater definition
+				$('.name').attr("id", "maul-name");
+				$('.health').attr("id", "maul-health");
+
 			// Display the chosen character
 			$("#maul").removeClass("available").addClass("chosen");
+			
+			$("#chosen").append(characters[3].name);
+			$("#chosen").append(characters[3].healthPoints);
 			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
+
+
+
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
 			// User selects defender
