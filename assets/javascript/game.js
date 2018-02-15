@@ -82,9 +82,17 @@ $(document).ready(function () {
 			src: characters[i].src,
 			width: 250,
 			alt: characters[i].name,
-			id: characters[i].id
+			id: characters[i].id,
+			value: characters[i].healthPoints
 		});
 
+		// name
+		var nameOver = $("<span>");
+
+		// health
+		var healthOver = $("<span>");
+
+		//switch case for image
 		switch (i) {
 			case 0:
 				imgBtn.addClass("img-thumbnail imgBtn-obi available");
@@ -100,70 +108,73 @@ $(document).ready(function () {
 				break;
 		}
 		$('img').attr("id", imgBtn.id);
-		$("#characterChoose").append(imgBtn);
 
-		// name
-		var nameOver = $("<span>");
-		// health
-		var healthOver = $("<span>");
-
+		//switch case for name 
 		switch (i) {
 			case 0:
-				nameOver.addClass("nameover-obi available");
+				nameOver.addClass("nameover-obi name");
 				break;
 			case 1:
-				nameOver.addClass("nameover-luke available");
+				nameOver.addClass("nameover-luke name");
 				break;
 			case 2:
-				nameOver.addClass("nameover-sid available");
+				nameOver.addClass("nameover-sid name");
 				break;
 			case 3:
-				nameOver.addClass("nameover-maul available");
+				nameOver.addClass("nameover-maul name");
 				break;
 		}
+		$('.name').attr("id", imgBtn.alt);
 
+		//switch case for health
 		switch (i) {
 			case 0:
-				healthOver.addClass("healthover-obi available");
+				healthOver.addClass("healthover-obi health");
 				break;
 			case 1:
-				healthOver.addClass("healthover-luke available");
+				healthOver.addClass("healthover-luke health");
 				break;
 			case 2:
-				healthOver.addClass("healthover-sid available");
+				healthOver.addClass("healthover-sid health");
 				break;
 			case 3:
-				healthOver.addClass("healthover-maul available");
+				healthOver.addClass("healthover-maul health");
 				break;
 		}
+		$('.health').attr("id", imgBtn.value);
+
 		nameOver.text(characters[i].name);
 		healthOver.text(characters[i].healthPoints);
 
 		$("#characterChoose").append(nameOver);
 		$("#characterChoose").append(healthOver);
-		
-		// $('h5').attr("id", "health"); // for testing(@-line101)
-		
-		
-		$('h5').attr("id", "health"); // line behaves oddly, not adding id "health" to h5 for d.maul when on line line 98 or earlier.?
+		$("#characterChoose").append(imgBtn);
+
 	}
 
 
 
 
-	//  initialize the character value 
-	function theCharacter(theCharacter) {
-		character.name = theCharacter.name;
-		character.healthPoints = theCharacter.healthPoints;
-		character.attackPower = theCharacter.attackPower;
-		character.baseAttack = theCharacter.baseAttack;
+	//  initialize the character value                   ////this is broken, unable to console value
+	function theCharacter(me) {
+		character.name = me.name;
+		character.healthPoints = me.healthPoints;
+		character.attackPower = me.attackPower;
+		character.baseAttack = me.baseAttack;
+		character.counterAttackPower = me.counterAttackPower;
+		character.src = me.src;
+		character.id = me.id;
 	}
 
 	// initialize the enemy value 
-	function theDefender(theDefender) {
-		theEnemy.name = theDefender.name;
-		theEnemy.healthPoints = theDefender.healthPoints;
-		theEnemy.counterAttackPower = theEnemy.counterAttackPower;
+	function theDefender(them) {
+		theEnemy.name = them.name;
+		theEnemy.healthPoints = them.healthPoints;
+		theEnemy.counterAttackPower = them.counterAttackPower;
+		theEnemy.attackPower = them.attackPower;
+		theEnemy.baseAttack = them.baseAttack;
+		theEnemy.src = them.src;
+		theEnemy.id = them.id;
 	}
 
 	// Move remaining to defenders Position
@@ -202,7 +213,11 @@ $(document).ready(function () {
 		var end = false;
 	}
 
-
+	// Move remaining to defenders Position
+	function moveEnemies() {
+		$(".available").removeClass("available").addClass("becomeEnemy");
+		$("#enemies").append($(".becomeEnemy"));
+	}
 	// Process
 	// --------------------------------------------------------------------------------------
 
@@ -216,7 +231,7 @@ $(document).ready(function () {
 
 	$("#obi-wan").on("click", function () {
 		// console.log("Obi-Wan Kenobi");
-
+		//if no character selected
 		if (characterSelected == false) {
 			$("#message").empty();
 
@@ -224,24 +239,25 @@ $(document).ready(function () {
 			characterSelected = true;
 
 			$("#obi-wan").removeClass("available").addClass("chosen");
-			// $("#chosen").append(this);
+			// $("#").removeClass("available").addClass("chosen");
+			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
-
+			// if character is selected and enemy is not selected
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
-		// User selects defender
-		if($("#obi-wan").hasClass("becomeEnemy")) {
-			$("#message").empty();
+			// User selects defender
+			if ($("#obi-wan").hasClass("becomeEnemy")) {
+				$("#message").empty();
 
-			theDefender(characters[0]);
-			enemySelected = true;
+				theDefender(characters[0]);
+				enemySelected = true;
 
-			// move to defender section
-			$("#obi-wan").removeClass("theEnemy").addClass("defenders");
-			$("#enemies").append(this);
-		}
+				// move to defender section
+				// $("#obi-wan").removeClass("theEnemy").addClass("defenders");
+				// $("#enemy").append(this);
+			}
 		}
 	});
 
@@ -257,7 +273,7 @@ $(document).ready(function () {
 			characterSelected = true;
 
 			$("#luke").removeClass("available").addClass("chosen");
-			// $("#chosen-character").append(this);
+			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
@@ -265,16 +281,16 @@ $(document).ready(function () {
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
 			// User selects defender
-		if($("#luke").hasClass("becomeEnemy")) {
+			if ($("#luke").hasClass("becomeEnemy")) {
 				$("#message").empty();
 
-				theDefender(characters[1]);//fix
+				theDefender(characters[1]);
 				enemySelected = true;
 
 				// move to defender section 
 				$("#luke").removeClass("theEnemy").addClass("defenders");
-				$("#enemies").append(this);
-		}	
+				$("#enemy").append(this);
+			}
 		}
 	});
 
@@ -290,7 +306,7 @@ $(document).ready(function () {
 
 			// Display the chosen character
 			$("#sid").removeClass("available").addClass("chosen");
-			// $("#chosen").append(this);
+			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
@@ -301,13 +317,13 @@ $(document).ready(function () {
 				$("#message").empty();
 
 				// Set the user's enemy
-				theDefender(characters[2]); //fix
+				theDefender(characters[2]);
 				enemySelected = true;
 
 				// Add the character to the defender section 
 				$("#sid").removeClass("theEnemy").addClass("defenders");
-				$("#enemies").append(this);
-			}	
+				$("#enemy").append(this);
+			}
 		}
 	});
 
@@ -322,23 +338,23 @@ $(document).ready(function () {
 
 			// Display the chosen character
 			$("#maul").removeClass("available").addClass("chosen");
-			// $("#chosen").append(this);
+			$("#chosen").append(this);
 
 			// Move the remaining characters to the enemies section
 			moveEnemies();
 		} else if ((characterSelected == true) && (enemySelected == false)) {
 
 			// User selects defender
-			if($("#maul").hasClass("becomeEnemy")) {
+			if ($("#maul").hasClass("becomeEnemy")) {
 				$("#message").empty();
 
 				// Set the user's enemy
-				theDefender(characters[3]); //fix
+				theDefender(characters[3]);
 				enemySelected = true;
 
 				// move to defender section
 				$("#maul").removeClass("theEnemy").addClass("defenders");
-				$("#enemies").append(this);
+				$("#enemy").append(this);
 			}
 		}
 	});
@@ -354,20 +370,20 @@ $(document).ready(function () {
 		if (characterSelected && enemySelected && !theEnd) {
 
 			// User attacks
-			theEnemy.healthPoints -= theCharacter.attackPower;
-			$(".theEnemy").html(theEnemy.healthPoints);
+			them.healthPoints -= me.attackPower;
+			$(".theEnemy").html(them.healthPoints);// here
 			$("#message").html(messages.attack);
 
 			// attack power increases
-			theCharacter.attackPower += theCharacter.baseAttack;
+			me.attackPower += me.baseAttack;
 
 			// check defender health and counter(if alive)
-			if (theEnemy.healthPoints > 0) {
-				theCharacter.healthPoints -= theEnemy.counterAttackPower;
-				$(".chosen").html(theCharacter.healthPoints);
+			if (them.healthPoints > 0) {
+				me.healthPoints -= them.counterAttackPower;
+				$(".chosen").html(me.healthPoints);
 
 				// Check user health after counter
-				if (theCharacter.healthPoints > 0) {
+				if (me.healthPoints > 0) {
 					$("#message").append(messages.counter);
 				} else {
 					theEnd = true;
