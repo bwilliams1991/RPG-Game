@@ -1,29 +1,38 @@
 
 body {
 	background-image: url("../images/X-wing_SWB.png");
-}
-
-img {
-	opacity: 1.0;
-}
-.image { 
-	position: relative; 
-	width: 100%; 
-
-}
-
-span {
-	line-height: 70%;
 	color: white;
 	text-shadow: 
 			-1px -1px 0 #000,
 			 1px -1px 0 #000,
 			-1px  1px 0 #000,
 			 1px  1px 0 #000;
+}
+
+h2 {
+	text-align: center; 
+}
+h3 {
+	text-align: center;
+}
+
+
+.image { 
+	position: relative; 
+	width: 100%; 
+
+}
+
+.right {
+	text-align: right;
+}
+
+span {
+	line-height: 70%;
 	margin-right: 5px;
 }
 
-.opacity {
+/* .opacity {
 	background: white;
 	opacity: 0.1;
-}
+} */
