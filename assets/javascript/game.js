@@ -203,8 +203,11 @@ $(document).ready(function () {
 					break;
 			}
 		}
-
-		$(".imgBtn-obi imgBtn-luke imgBtn-sid imgBtn-maul").removeClass("chosen becomeEnemy").addClass("available");
+ 
+		$(".imgBtn-obi").removeClass("chosen becomeEnemy").addClass("available");
+		$(".imgBtn-luke").removeClass("chosen becomeEnemy").addClass("available");
+		$(".imgBtn-sid").removeClass("chosen becomeEnemy").addClass("available");
+		$(".imgBtn-maul").removeClass("chosen becomeEnemy").addClass("available");
 		var available = $(".available").show();
 		$("#characterChoose").html(available);
 
@@ -212,18 +215,18 @@ $(document).ready(function () {
 		$("#restart").hide();
 
 		// character selections
-		var characterSelected = false;
-		var enemySelected = false;
+		characterSelected = false;
+		enemySelected = false;
 
 		// store current choice
-		var theCharacter = {};
-		var theEnemy = {};
+		theCharacter = {};
+		theEnemy = {};
 
 		// hope this is obvious, one end-game instance is =3 -> win
-		var enemiesDefeated = 0;
+		enemiesDefeated = 0;
 
 		// indicates end of game
-		var end = false;
+		end = false;
 	}
 
 	// Process
