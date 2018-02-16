@@ -15,6 +15,12 @@ header {
 	justify-content: center;
 }
 
+.available, .becomeEnemy {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+
 .header {
 	order: 1;
 }
@@ -32,8 +38,8 @@ header {
 }
 
 .image { 
-	position: relative; 
-	width: 100%; 
+	width: 100%;
+	height: 650px;
 }
 
 /* .name, .health {
@@ -45,5 +51,43 @@ header {
 
 .name {
 	margin-right: 5px;
+}
+
+.healthbar {
+	border: 2px solid white;
+}
+
+.healthbar-obi,
+.healthbar-luke, 
+.healthbar-sid, 
+.healthbar-maul {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.img-thumbnail {
+	border-color: transparent;
+}
+
+.imgBtn-obi, .healthbar-obi {
+	border: 5px solid #4065b4;
+}
+
+.imgBtn-luke, .healthbar-luke {
+	border: 5px solid #40b440;
+}
+
+.imgBtn-sid, .healthbar-sid {
+	border: 5px solid #b44848;
+}
+
+.imgBtn-maul, .healthbar-maul {
+	border: 5px solid #000000;
+}
+
+.footer {
+	margin-bottom: 50px;
+	/* border: 2px solid white; */
+	color: white;
 }
 
