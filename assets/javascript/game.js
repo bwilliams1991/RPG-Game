@@ -199,7 +199,7 @@ $(document).ready(function () {
 	function reset() {
 
 		// Reset all the health values
-console.log("reset");
+		console.log("reset");
 
 		$("#healthbar-obi").html(characters[0].healthPoints);
 		$("#healthbar-luke").html(characters[1].healthPoints);
@@ -222,16 +222,15 @@ console.log("reset");
 		// character selections
 		characterSelected = false;
 		enemySelected = false;
-
-		// store current choice
-		theCharacter = {};
-		theEnemy = {};
-
 		// hope this is obvious, one end-game instance is =3 -> win
 		enemiesDefeated = 0;
-
 		// indicates end of game
-		end = false;
+		theEnd = false;
+
+		// store current choice
+		character = {};
+		theEnemy = {};
+
 	}
 
 	// Process
@@ -417,7 +416,7 @@ console.log("reset");
 			console.log("attack");
 			// User attacks
 			theEnemy.healthPoints -= character.attackPower;
-			if(theEnemy.name === "Obi-wan Kenobi") {
+			if (theEnemy.name === "Obi-wan Kenobi") {
 				$("#healthbar-obi").html(theEnemy.healthPoints);
 			} else if (theEnemy.name === "Luke Skywalker") {
 				$("#healthbar-luke").html(theEnemy.healthPoints);
@@ -426,12 +425,12 @@ console.log("reset");
 			} else if (theEnemy.name === "Darth Maul") {
 				$("#healthbar-maul").html(theEnemy.healthPoints);
 			}
-			
+
 			$("#message").html(messages.attack);
 			console.log(character.attackPower);
 			// attack power increases
 			character.attackPower += character.baseAttack;
-			if(character.name === "Obi-wan Kenobi") {
+			if (character.name === "Obi-wan Kenobi") {
 				$("#healthbar-obi").html(character.healthPoints);
 			} else if (character.name === "Luke Skywalker") {
 				$("#healthbar-luke").html(character.healthPoints);
@@ -444,7 +443,7 @@ console.log("reset");
 			// check defender health and counter(if alive)
 			if (theEnemy.healthPoints > 0) {
 				character.healthPoints -= theEnemy.counterAttackPower;
-				$("#healthbar-obi").html(character.healthPoints);//here
+				$("#healthbar-obi").html(character.healthPoints);
 				console.log("enemy not dead, countered");
 				// Check user health after counter
 				if (character.healthPoints > 0) {
