@@ -65,10 +65,6 @@ header {
 	padding-bottom: 5px;
 }
 
-.img-thumbnail {
-	border-color: transparent;
-}
-
 .imgBtn-obi, .healthbar-obi {
 	border: 5px solid #4065b4;
 }

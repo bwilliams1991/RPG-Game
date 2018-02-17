@@ -70,20 +70,20 @@ $(document).ready(function () {
 	// 	win: "Winner!",
 	// 	character: "Select your character",
 	// }
-
+	// moved below
 
 	// Functions
 	// --------------------------------------------------------------------------------------
 	//
 
 	function buildMessages(theEnemy, character) {
-			messages.attack = "You attacked " + theEnemy["name"] + " for " + character["attackPower"] + " damage."
-			messages.counter = theEnemy.name + " attacked you back for " + theEnemy.counterAttackPower + " damage."
-			messages.defeat ="You have defeated " + theEnemy.name + ", choose the next combatant."
-			messages.end = "You have been defeated ... Game Over!"
-			messages.missing = "No enemy to attack, please choose another enemy."
-			message.win = "Winner!"
-			messages.character ="Select your character"
+		messages.attack = "You attacked " + theEnemy["name"] + " for " + character["attackPower"] + " damage."
+		messages.counter = theEnemy.name + " attacked you back for " + theEnemy.counterAttackPower + " damage."
+		messages.defeat = "You have defeated " + theEnemy.name + ", choose the next combatant."
+		messages.end = "You have been defeated ... Game Over!"
+		messages.missing = "No enemy to attack, please choose another enemy."
+		message.win = "Winner!"
+		messages.character = "Select your character"
 	}
 
 	// create character images and health/name display
@@ -127,9 +127,10 @@ $(document).ready(function () {
 		//switch case for name / health
 		switch (i) {
 			case 0:
-				nameOver.addClass("nameover-obi name"); healthOver.addClass("healthover-obi health");
+				nameOver.addClass("nameover-obi name");
+				healthOver.addClass("healthover-obi health");
 
-				$("#healthbar-obi").prepend(characters[i].name);
+				$("#namebar-obi").prepend(characters[i].name);
 				$("#healthbar-obi").append(characters[i].healthPoints);
 
 				break;
@@ -137,7 +138,7 @@ $(document).ready(function () {
 				nameOver.addClass("nameover-luke name");
 				healthOver.addClass("healthover-luke health");
 
-				$("#healthbar-luke").prepend(characters[i].name);
+				$("#namebar-luke").prepend(characters[i].name);
 				$("#healthbar-luke").append(characters[i].healthPoints);
 
 				break;
@@ -145,14 +146,15 @@ $(document).ready(function () {
 				nameOver.addClass("nameover-sid name");
 				healthOver.addClass("healthover-sid health");
 
-				$("#healthbar-sid").prepend(characters[i].name);
+				$("#namebar-sid").prepend(characters[i].name);
 				$("#healthbar-sid").append(characters[i].healthPoints);
 				break;
 			case 3:
 				nameOver.addClass("nameover-maul name");
 				healthOver.addClass("healthover-maul health");
 
-				$("#healthbar-maul").prepend(characters[i].name); $("#healthbar-maul").append(characters[i].healthPoints);
+				$("#namebar-maul").prepend(characters[i].name);
+				$("#healthbar-maul").append(characters[i].healthPoints);
 				break;
 		}
 		$('.name').attr("id", imgBtn.alt);
@@ -199,27 +201,19 @@ $(document).ready(function () {
 	function reset() {
 
 		// Reset all the health values
-		for (var i = 0; i < characters.length; i++) {
-			switch (i) {
-				case 0:
-					$("#healthbar-obi").html(characters[i].health);
-					break;
-				case 1:
-					$("#healthbar-luke").html(characters[i].health);
-					break;
-				case 2:
-					$("#healthbar-sid").html(characters[i].health);
-					break;
-				case 3:
-					$("#healthbar-maul").html(characters[i].health);
-					break;
-			}
-		}
- 
+console.log("reset");
+
+		$("#healthbar-obi").html(characters[0].healthPoints);
+		$("#healthbar-luke").html(characters[1].healthPoints);
+		$("#healthbar-sid").html(characters[2].healthPoints);
+		$("#healthbar-maul").html(characters[3].healthPoints);
+
+
 		$(".imgBtn-obi").removeClass("chosen becomeEnemy").addClass("available");
 		$(".imgBtn-luke").removeClass("chosen becomeEnemy").addClass("available");
 		$(".imgBtn-sid").removeClass("chosen becomeEnemy").addClass("available");
 		$(".imgBtn-maul").removeClass("chosen becomeEnemy").addClass("available");
+
 		var available = $(".available").show();
 		$("#characterChoose").html(available);
 
@@ -422,10 +416,10 @@ $(document).ready(function () {
 	$("#attack-btn").on("click", function () {
 		if (characterSelected && enemySelected && !theEnd) {
 			buildMessages(theEnemy, character)
-console.log("attack");
+			console.log("attack");
 			// User attacks
 			theEnemy.healthPoints -= character.attackPower;
-			$(".theEnemy").html(theEnemy.healthPoints);// here
+			$("#healthbar-sid").html(theEnemy.healthPoints);// here
 			$("#message").html(messages.attack);
 			console.log(character.attackPower);
 			// attack power increases
@@ -434,7 +428,7 @@ console.log("attack");
 			// check defender health and counter(if alive)
 			if (theEnemy.healthPoints > 0) {
 				character.healthPoints -= theEnemy.counterAttackPower;
-				$("").html(character.healthPoints);//here
+				$("#healthbar-obi").html(character.healthPoints);//here
 				console.log("enemy not dead, countered");
 				// Check user health after counter
 				if (character.healthPoints > 0) {
