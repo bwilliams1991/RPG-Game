@@ -419,11 +419,29 @@ console.log("reset");
 			console.log("attack");
 			// User attacks
 			theEnemy.healthPoints -= character.attackPower;
-			$("#healthbar-sid").html(theEnemy.healthPoints);// here
+			if(theEnemy.name === "Obi-wan Kenobi") {
+				$("#healthbar-obi").html(theEnemy.healthPoints);
+			} else if (theEnemy.name === "Luke Skywalker") {
+				$("#healthbar-luke").html(theEnemy.healthPoints);
+			} else if (theEnemy.name === "Darth Sidious") {
+				$("#healthbar-sid").html(theEnemy.healthPoints);
+			} else if (theEnemy.name === "Darth Maul") {
+				$("#healthbar-maul").html(theEnemy.healthPoints);
+			}
+			
 			$("#message").html(messages.attack);
 			console.log(character.attackPower);
 			// attack power increases
 			character.attackPower += character.baseAttack;
+			if(character.name === "Obi-wan Kenobi") {
+				$("#healthbar-obi").html(character.healthPoints);
+			} else if (character.name === "Luke Skywalker") {
+				$("#healthbar-luke").html(character.healthPoints);
+			} else if (character.name === "Darth Sidious") {
+				$("#healthbar-sid").html(character.healthPoints);
+			} else if (character.name === "Darth Maul") {
+				$("#healthbar-maul").html(character.healthPoints);
+			}
 			console.log(character.attackPower);
 			// check defender health and counter(if alive)
 			if (theEnemy.healthPoints > 0) {
