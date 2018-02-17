@@ -59,20 +59,32 @@ $(document).ready(function () {
 		}
 	];
 
-	var messages = {
-		attack: "You attacked " + theEnemy.name + " for " + character.attackPower + " damage.",
-		counter: theEnemy.name + "attacked you back for " + theEnemy.counterAttackPower + "damage.",
-		defeat: "You have defeated " + theEnemy.name + ", choose the next combatant.",
-		end: "You have been defeated ... Game Over!",
-		missing: "No enemy to attack, please choose another enemy.",
-		win: "Winner!",
-		character: "Select your character",
-	}
+	var messages = {}
+
+	// var messages = {
+	// 	attack: "You attacked " + theEnemy["name"] + " for " + character["attackPower"] + " damage.",
+	// 	counter: theEnemy.name + " attacked you back for " + theEnemy.counterAttackPower + " damage.",
+	// 	defeat: "You have defeated " + theEnemy.name + ", choose the next combatant.",
+	// 	end: "You have been defeated ... Game Over!",
+	// 	missing: "No enemy to attack, please choose another enemy.",
+	// 	win: "Winner!",
+	// 	character: "Select your character",
+	// }
 
 
 	// Functions
 	// --------------------------------------------------------------------------------------
 	//
+
+	function buildMessages(theEnemy, character) {
+			messages.attack = "You attacked " + theEnemy["name"] + " for " + character["attackPower"] + " damage."
+			messages.counter = theEnemy.name + " attacked you back for " + theEnemy.counterAttackPower + " damage."
+			messages.defeat ="You have defeated " + theEnemy.name + ", choose the next combatant."
+			messages.end = "You have been defeated ... Game Over!"
+			messages.missing = "No enemy to attack, please choose another enemy."
+			message.win = "Winner!"
+			messages.character ="Select your character"
+	}
 
 	// create character images and health/name display
 	for (var i = 0; i < characters.length; i++) {
@@ -212,6 +224,7 @@ $(document).ready(function () {
 		$("#characterChoose").html(available);
 
 		$("#message").empty();
+		$("#message").append(messages.character);
 		$("#restart").hide();
 
 		// character selections
@@ -272,8 +285,8 @@ $(document).ready(function () {
 				enemySelected = true;
 
 				// move to defender section
-				// $("#obi-wan").removeClass("theEnemy").addClass("defenders");
-				// $("#enemy").append(this);
+				$("#obi-wan").removeClass("theEnemy").addClass("defenders");
+				$("#enemy").append(this);
 			}
 		}
 	});
@@ -408,29 +421,33 @@ $(document).ready(function () {
 	// next defender, repeat fight until finish
 	$("#attack-btn").on("click", function () {
 		if (characterSelected && enemySelected && !theEnd) {
-
+			buildMessages(theEnemy, character)
+console.log("attack");
 			// User attacks
 			theEnemy.healthPoints -= character.attackPower;
 			$(".theEnemy").html(theEnemy.healthPoints);// here
 			$("#message").html(messages.attack);
-
+			console.log(character.attackPower);
 			// attack power increases
 			character.attackPower += character.baseAttack;
-
+			console.log(character.attackPower);
 			// check defender health and counter(if alive)
 			if (theEnemy.healthPoints > 0) {
 				character.healthPoints -= theEnemy.counterAttackPower;
 				$("").html(character.healthPoints);//here
-
+				console.log("enemy not dead, countered");
 				// Check user health after counter
 				if (character.healthPoints > 0) {
 					$("#message").append(messages.counter);
+					console.log("you are not dead");
 				} else {
+					console.log("dead");
 					theEnd = true;
 					$("#message").html(messages.end);
 					$("#restart").show();
 				}
 			} else {
+				console.log("he gone!");
 				// enemy is defeated
 				enemiesDefeated++;
 				enemySelected = false;
@@ -439,6 +456,7 @@ $(document).ready(function () {
 
 				// Check if winning
 				if (enemiesDefeated === 3) {
+					console.log("you have killed them all");
 					theEnd = true;
 					$("#message").html(messages.win);
 					$("#restart").show();
