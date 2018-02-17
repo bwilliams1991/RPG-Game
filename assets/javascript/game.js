@@ -33,27 +33,27 @@ $(document).ready(function () {
 		{ //character[1].attribute
 			name: "Luke Skywalker",
 			healthPoints: 100,
-			attackPower: 8,
+			attackPower: 12,
 			counterAttackPower: 5,
-			baseAttack: 8,
+			baseAttack: 12,
 			src: "./assets/images/luke-skywalker.jpg",
 			id: "luke"
 		},
 		{ //character[2].attribute
 			name: "Darth Sidious",
 			healthPoints: 150,
-			attackPower: 8,
+			attackPower: 4,
 			counterAttackPower: 20,
-			baseAttack: 8,
+			baseAttack: 4,
 			src: "./assets/images/sid.png",
 			id: "sid"
 		},
 		{ //character[3].attribute
 			name: "Darth Maul",
 			healthPoints: 180,
-			attackPower: 8,
+			attackPower: 2,
 			counterAttackPower: 25,
-			baseAttack: 8,
+			baseAttack: 2,
 			src: "./assets/images/DarthMaul.jpeg",
 			id: "maul"
 		}
@@ -160,13 +160,11 @@ $(document).ready(function () {
 		$('.name').attr("id", imgBtn.alt);
 		$('.health').attr("id", imgBtn.value);
 
-		// $("#characterChoose").append(nameOver);
-		// $("#characterChoose").append(healthOver);
 		$("#characterChoose").append(imgBtn);
 
 	}
 
-	//  initialize the character value                   ////this is broken, unable to console value
+	//  initialize the character value 
 	function theCharacter(me) {
 		character.name = me.name;
 		character.healthPoints = me.healthPoints;
